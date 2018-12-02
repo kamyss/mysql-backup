@@ -1,37 +1,42 @@
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
-</p>
+# 使用 PHP 编写的 MYSQL 备份恢复的小工具  
+基于 [Laravel 5.7](https://laravel.com/docs/5.7) 和 [Laravel Zero](https://laravel-zero.com) 编写。
 
-<p align="center">
-  <a href="https://travis-ci.org/laravel-zero/framework"><img src="https://img.shields.io/travis/laravel-zero/framework/stable.svg" alt="Build Status"></img></a>
-  <a href="https://scrutinizer-ci.com/g/laravel-zero/framework"><img src="https://img.shields.io/scrutinizer/g/laravel-zero/framework.svg" alt="Quality Score"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/d/total.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/v/stable.svg" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/license.svg" alt="License"></a>
-</p>
+## 运行环境
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+PHP 7.1.3+
 
-Laravel Zero was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+## 使用手册
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](http://laravel-zero.com/#/?id=database), Laravel [Logging](http://laravel-zero.com/#/?id=log) and many others.
-- Supports interactive [menus](http://laravel-zero.com/#/?id=interactive-menus) and [desktop notifications](http://laravel-zero.com/#/?id=desktop-notifications) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](http://laravel-zero.com/#/?id=scheduler) and a [Standalone Compiler](http://laravel-zero.com/#/?id=build-a-standalone-application).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+### 1、复制源代码并进入到项目根目录 
+`git clone https://github.com/huanghua581/mysql-backup.git && cd mysql-backup`
 
-------
 
-## Documentation
+### 2、安装依赖
+`composer install`
 
-For full documentation, visit [laravel-zero.com](http://laravel-zero.com/).
+### 3、设置配置文件
+`cp .env.example .env`
 
-## Support the development
-**Do you like this project? Support it by donating**
+**配置说明：**  
+> DB_HOST：数据库连接地址    
+> DB_USERNAME：数据库用户名     
+> DB_PASSWORD：数据库密码    
+> DB_DATABASES：需要备份的数据库（多数据库英文','分割，例如：abc,def 即备份 abc 和 def 两个数据库）；     
+> BACKUP_DAYS：数据库备份保留天数 ，默认为保留 7 天；  
+> MYSQL_PATH：MYSQL bin 目录，默认为空，（如果默认不能执行，请设置此项，例如：MYSQL_PATH=/usr/bin/，记得带后面的 /） 。
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+### 4、开始使用
+* 执行 `php mysql-backup` 会列出支持命令；
+* 执行 `php mysql-backup create` 备份配置文件中的数据库，可选参数（--database）即 `php mysql-backup  create --database abc` 只备份数据库 abc ；
+* `php mysql-backup all` 会列出所有备份文件；
+* 执行 `php mysql-backup restore` 恢复数据，必填参数 （--snapshot）即 `php mysql-backup restore --snapshot abc_2018-12-02_04411543725670.sql` 恢复数据库 abc；
+
+
+当然我们还可以计划任务：https://laravel-zero.com/#/usage?id=scheduler ，默认每天凌晨备份，保留 7 天的数据。
+
+ 
+如果觉得还是不够方便，自己改源码吧。
 
 ## License
 
-Laravel Zero is an open-source software licensed under the [MIT license](https://github.com/laravel-zero/laravel-zero/blob/stable/LICENSE.md).
+MySql Backup is an open-source software licensed under the [MIT license](https://github.com/laravel-zero/laravel-zero/blob/stable/LICENSE.md).

@@ -22,7 +22,7 @@ class CreateCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create MySql Backup';
+    protected $description = 'Create MySql Backup, option {--database= : provide of name database}';
 
     /**
      * Execute the console command.

@@ -21,7 +21,7 @@ class RestoreCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Restore MySql Backup';
+    protected $description = 'Restore MySql Backup, option {--snapshot= : provide of name snapshot}';
 
     /**
      * Execute the console command.

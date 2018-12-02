@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'db_host'      => getenv('DB_HOST'),
-    'db_username'  => getenv('DB_USERNAME'),
-    'db_password'  => getenv('DB_PASSWORD'),
-    'db_databases' => getenv('DB_DATABASES'),
-    'backup_days'  => getenv('BACKUP_DAYS'),
-    'mysql_path'   => getenv('MYSQL_PATH'),
+    'db_host'      => env('DB_HOST'),
+    'db_username'  => env('DB_USERNAME'),
+    'db_password'  => env('DB_PASSWORD'),
+    'db_databases' => env('DB_DATABASES'),
+    'backup_days'  => env('BACKUP_DAYS'),
+    'mysql_path'   => env('MYSQL_PATH'),
 ];
